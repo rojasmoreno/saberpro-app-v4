@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Estudiante - Sistema Saber Pro</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<header class="uts-header">
+  <div class="header-left">
+    <div class="header-logo">uts</div>
+    <span class="header-title">🎓 Portal del Estudiante</span>
+  </div>
+  <div class="header-right">
+    <span class="header-user" id="headerNombre">Bienvenido</span>
+    <button class="btn-logout" onclick="cerrarSesion()">🚪 Cerrar sesión</button>
+  </div>
+</header>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <button class="sidebar-btn activo" onclick="mostrarSeccion('inicio', this)">🏠 Inicio</button>
+    <button class="sidebar-btn" onclick="mostrarSeccion('datos', this)">👤 Datos Personales</button>
+    <button class="sidebar-btn" onclick="mostrarSeccion('pago', this)">💳 Pago Saber Pro</button>
+    <button class="sidebar-btn" onclick="mostrarSeccion('resultado', this)">📊 Último Resultado</button>
+    <button class="sidebar-btn" onclick="mostrarSeccion('todos', this)">📋 Todos los Resultados</button>
+    <button class="sidebar-btn" onclick="mostrarSeccion('beneficios', this)">🎁 Beneficios</button>
+  </aside>
+
+  <main class="content">
+
+    <!-- INICIO -->
+    <section id="inicio" class="seccion">
+      <div class="perfil-header">
+        <div class="perfil-avatar">🎓</div>
+        <h3 id="perfilNombre">Estudiante</h3>
+        <p id="perfilCorreo"></p>
+      </div>
+
+      <div class="card">
+        <h3>📋 Mis Datos Académicos</h3>
+        <div class="form-row" style="margin-bottom:0">
+          <div>
+            <label style="font-size:11px;color:#999;display:block;margin-bottom:4px">🎓 PROGRAMA</label>
+            <input type="text" id="infoPrograma" readonly style="background:#f5f5f5;border-color:#eee" placeholder="—">
+          </div>
+          <div>
+            <label style="font-size:11px;color:#999;display:block;margin-bottom:4px">📅 SEMESTRE</label>
+            <input type="text" id="infoSemestre" readonly style="background:#f5f5f5;border-color:#eee" placeholder="—">
+          </div>
+          <div>
+            <label style="font-size:11px;color:#999;display:block;margin-bottom:4px">🔢 N° REGISTRO</label>
+            <input type="text" id="infoRegistro" readonly style="background:#f5f5f5;border-color:#eee" placeholder="—">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>☰ Mis Opciones</h3>
+        <div class="opciones-grid">
+          <div class="opcion-card" onclick="mostrarSeccion('datos', null)">
+            <div class="icono">👤</div>
+            <span>Mis Datos Personales</span>
+          </div>
+          <div class="opcion-card" onclick="mostrarSeccion('resultado', null)">
+            <div class="icono">⭐</div>
+            <span>Mi Último Resultado</span>
+          </div>
+          <div class="opcion-card" onclick="mostrarSeccion('todos', null)">
+            <div class="icono">📊</div>
+            <span>Todos mis Resultados</span>
+          </div>
+          <div class="opcion-card" onclick="mostrarSeccion('beneficios', null)">
+            <div class="icono">🎁</div>
+            <span>Beneficios Obtenidos</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:0">
+        <h3>🆔 Identificación</h3>
+        <div class="form-row">
+          <input id="idEstudianteActual" type="number" placeholder="Ingrese su ID para cargar datos">
+        </div>
+        <button class="btn-secundario" onclick="identificarEstudiante()">Identificar</button>
+      </div>
+    </section>
+
+    <!-- DATOS -->
+    <section id="datos" class="seccion oculto">
+      <div class="card">
+        <h2>👤 Datos Personales</h2>
+        <pre id="datosPersonalesResult">Usa la sección Inicio para identificarte primero.</pre>
+      </div>
+    </section>
+
+    <!-- PAGO -->
+    <section id="pago" class="seccion oculto">
+      <div class="card">
+        <h2>💳 Cargue Pago Saber Pro</h2>
+        <p style="margin-bottom:12px">Estado: <strong id="estadoPago" style="color:#c0392b">Pendiente</strong></p>
+        <button class="btn-crear" onclick="cargarPagoEstudiante()">✅ Registrar Pago</button>
+      </div>
+    </section>
+
+    <!-- RESULTADO -->
+    <section id="resultado" class="seccion oculto">
+      <div class="card">
+        <h2>⭐ Último Resultado</h2>
+        <pre id="resultadoUnicoEst">Sin resultados disponibles.</pre>
+      </div>
+      <div class="puntaje-card" id="puntajeCard" style="display:none">
+        <div class="trofeo">🏆</div>
+        <p>Tu último puntaje global</p>
+        <div class="num" id="puntajeNum">—</div>
+        <span class="nivel" id="puntajeNivel">—</span>
+      </div>
+    </section>
+
+    <!-- TODOS -->
+    <section id="todos" class="seccion oculto">
+      <div class="card">
+        <h2>📋 Todos los Resultados</h2>
+        <table id="tablaResultadosEst">
+          <thead><tr><th>ID</th><th>Estudiante</th><th>Puntaje</th><th>Nivel</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section id="beneficios" class="seccion oculto">
+      <div class="card">
+        <h2>🎁 Beneficios Académicos</h2>
+        <pre id="beneficiosEstResult">Sin beneficios disponibles.</pre>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+function mostrarSeccion(id, btn) {
+  document.querySelectorAll(".seccion").forEach(s => s.classList.add("oculto"));
+  document.getElementById(id).classList.remove("oculto");
+  document.querySelectorAll(".sidebar-btn").forEach(b => b.classList.remove("activo"));
+  if (btn) btn.classList.add("activo");
+}
+
+window.addEventListener('load', function() {
+  const u = JSON.parse(localStorage.getItem('usuario') || 'null');
+  if (u) {
+    document.getElementById('headerNombre').textContent = u.nombre || u.username || '';
+    document.getElementById('perfilNombre').textContent = u.nombre || u.username || '';
+    if (u.correo) document.getElementById('perfilCorreo').textContent = '✉ ' + u.correo;
+  }
+});
+</script>
+
+<script src="js/auth.js"></script>
+<script src="js/estudiante.js"></script>
+</body>
+</html>

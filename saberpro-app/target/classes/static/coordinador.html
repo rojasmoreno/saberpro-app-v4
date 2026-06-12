@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Coordinador - Sistema Saber Pro</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<header class="uts-header">
+  <div class="header-left">
+    <div class="header-logo">uts</div>
+    <span class="header-title">👥 Panel del Coordinador</span>
+  </div>
+  <div class="header-right">
+    <span class="header-user" id="headerNombre">Bienvenido</span>
+    <button class="btn-logout" onclick="cerrarSesion()">🚪 Cerrar sesión</button>
+  </div>
+</header>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <button class="sidebar-btn activo" onclick="mostrarSeccion('dashboard', this)">📊 Dashboard</button>
+    <button class="sidebar-btn" onclick="mostrarSeccion('gestion', this)">👨‍🎓 Gestionar Estudiantes</button>
+    <button class="sidebar-btn" onclick="mostrarSeccion('general', this)">📋 Informe General</button>
+    <button class="sidebar-btn" onclick="mostrarSeccion('detalle', this)">🔍 Informe Detallado</button>
+    <button class="sidebar-btn" onclick="mostrarSeccion('beneficios', this)">🎁 Beneficios</button>
+  </aside>
+
+  <main class="content">
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="seccion">
+      <div class="perfil-header">
+        <div class="perfil-avatar">👥</div>
+        <h3 id="perfilNombre">Coordinador</h3>
+        <p id="perfilArea">Área asignada</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card rojo">
+          <span class="stat-num" id="dashTotalEstudiantes">0</span>
+          <span class="stat-label">Total Estudiantes</span>
+        </div>
+        <div class="stat-card verde">
+          <span class="stat-num" id="dashAprobados">0</span>
+          <span class="stat-label">Con Resultados</span>
+        </div>
+        <div class="stat-card naranja">
+          <span class="stat-num" id="dashPendientes">0</span>
+          <span class="stat-label">Sin Resultados</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>☰ Opciones de Gestión</h3>
+        <div class="opciones-grid">
+          <div class="opcion-card" onclick="mostrarSeccion('gestion', null)">
+            <div class="icono">👨‍🎓</div>
+            <span>Gestión de Alumnos (CRUD)</span>
+          </div>
+          <div class="opcion-card" onclick="mostrarSeccion('general', null)">
+            <div class="icono">📋</div>
+            <span>Informe General de Alumnos</span>
+          </div>
+          <div class="opcion-card" onclick="mostrarSeccion('detalle', null)">
+            <div class="icono">📊</div>
+            <span>Informe Detallado por Programa</span>
+          </div>
+          <div class="opcion-card" onclick="mostrarSeccion('beneficios', null)">
+            <div class="icono">🎁</div>
+            <span>Informe de Beneficios</span>
+          </div>
+        </div>
+        <br>
+        <button class="btn-secundario" onclick="cargarDashboard()">🔄 Actualizar Estadísticas</button>
+      </div>
+    </section>
+
+    <!-- GESTION ESTUDIANTES -->
+    <section id="gestion" class="seccion oculto">
+      <div class="card">
+        <h2>👨‍🎓 Registrar Estudiante</h2>
+        <div class="form-row">
+          <input id="eTipoDoc" placeholder="Tipo Documento">
+          <input id="eNumDoc" placeholder="Número Documento">
+          <input id="ePrimerNombre" placeholder="Primer Nombre">
+          <input id="eSegundoNombre" placeholder="Segundo Nombre">
+          <input id="ePrimerApellido" placeholder="Primer Apellido">
+          <input id="eSegundoApellido" placeholder="Segundo Apellido">
+          <input id="eCorreo" placeholder="Correo">
+          <input id="eTelefono" placeholder="Teléfono">
+          <input id="eNumRegistro" placeholder="Número Registro">
+          <select id="eFacultad"><option value="">Seleccione Facultad</option></select>
+        </div>
+        <button class="btn-crear" onclick="crearEstudiante()">+ Registrar Estudiante</button>
+      </div>
+
+      <div class="card">
+        <h3>✏️ Editar Estudiante</h3>
+        <div class="form-row">
+          <input id="editIdEst" placeholder="ID del estudiante">
+        </div>
+        <button class="btn-secundario" onclick="cargarEstudianteParaEditar()" style="margin-right:8px">🔍 Buscar</button>
+        <button class="btn-crear" onclick="actualizarEstudiante()">💾 Guardar Cambios</button>
+      </div>
+
+      <div class="card">
+        <h3>Lista de Estudiantes</h3>
+        <table id="tablaEstudiantesCo">
+          <thead><tr><th>ID</th><th>Documento</th><th>Nombre</th><th>Facultad</th><th>Pago</th><th>Aprobado</th><th>Acciones</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- INFORME GENERAL -->
+    <section id="general" class="seccion oculto">
+      <div class="card">
+        <h2>📋 Informe General</h2>
+        <button class="btn-secundario" onclick="cargarInformeGeneral()">🔄 Actualizar</button>
+        <br><br>
+        <table id="tablaInformeGeneral">
+          <thead><tr><th>ID</th><th>Documento</th><th>Nombre</th><th>Facultad</th><th>Puntaje</th><th>Nivel</th><th>Aprobado</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- INFORME DETALLADO -->
+    <section id="detalle" class="seccion oculto">
+      <div class="card">
+        <h2>🔍 Resultado Detallado</h2>
+        <div class="form-row">
+          <input id="idDetalle" placeholder="ID Estudiante">
+        </div>
+        <button class="btn-secundario" onclick="cargarDetalle('detalleResultado')">Consultar</button>
+        <pre id="detalleResultado" style="margin-top:16px"></pre>
+      </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section id="beneficios" class="seccion oculto">
+      <div class="card">
+        <h2>🎁 Informe de Beneficios</h2>
+        <button class="btn-secundario" onclick="cargarBeneficios('tablaBeneficios')">🔄 Actualizar</button>
+        <br><br>
+        <table id="tablaBeneficios">
+          <thead><tr><th>ID</th><th>Nombre</th><th>Facultad</th><th>Puntaje</th><th>Nivel</th><th>Beneficio</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+function mostrarSeccion(id, btn) {
+  document.querySelectorAll(".seccion").forEach(s => s.classList.add("oculto"));
+  document.getElementById(id).classList.remove("oculto");
+  document.querySelectorAll(".sidebar-btn").forEach(b => b.classList.remove("activo"));
+  if (btn) btn.classList.add("activo");
+}
+
+window.addEventListener('load', function() {
+  const u = JSON.parse(localStorage.getItem('usuario') || 'null');
+  if (u) {
+    document.getElementById('headerNombre').textContent = u.nombre || u.username || '';
+    document.getElementById('perfilNombre').textContent = u.nombre || u.username || '';
+    if (u.area) document.getElementById('perfilArea').textContent = '📍 Área: ' + u.area;
+  }
+});
+</script>
+
+<script src="js/auth.js"></script>
+<script src="js/estudiantes.js"></script>
+<script src="js/informes.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

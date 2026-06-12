@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Sistema Saber Pro</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="login-body">
+
+<div class="login-wrapper">
+
+  <!-- IZQUIERDA -->
+  <div class="login-left">
+    <div class="login-logo">
+      <div>
+        <div class="login-logo-text">uts</div>
+        <div class="login-logo-sub">Unidades<br>Tecnológicas<br>de Santander</div>
+      </div>
+    </div>
+    <h2>Saber Pro</h2>
+    <p>Sistema de Gestión Académica</p>
+  </div>
+
+  <!-- DERECHA -->
+  <div class="login-right">
+    <h2>Iniciar Sesión</h2>
+    <p class="subtitle">Ingresa tus credenciales para continuar</p>
+
+    <div class="form-group">
+      <label>Usuario o Correo</label>
+      <input type="text" id="usuario" placeholder="admin">
+    </div>
+
+    <div class="form-group">
+      <label>Contraseña</label>
+      <input type="password" id="password" placeholder="••••••••">
+    </div>
+
+    <button class="btn-primary" onclick="login()">Iniciar Sesión</button>
+    <p class="error-msg" id="mensajeError"></p>
+
+    <div class="credenciales-box">
+      <h4>Credenciales de prueba:</h4>
+      <div class="cred-item">
+        <strong>Administrador</strong>
+        <span>Usuario: admin &nbsp;|&nbsp; Contraseña: admin123</span>
+      </div>
+      <div class="cred-item">
+        <strong>Coordinador</strong>
+        <span>Usuario: coordinador &nbsp;|&nbsp; Contraseña: coord123</span>
+      </div>
+      <div class="cred-item">
+        <strong>Docente</strong>
+        <span>Usuario: docente1 &nbsp;|&nbsp; Contraseña: doc123</span>
+      </div>
+      <div class="cred-item">
+        <strong>Estudiante</strong>
+        <span>Usuario: estudiante1 &nbsp;|&nbsp; Contraseña: est123</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/auth.js"></script>
+</body>
+</html>

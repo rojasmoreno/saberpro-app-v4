@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Docente - Sistema Saber Pro</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<header class="uts-header">
+  <div class="header-left">
+    <div class="header-logo">uts</div>
+    <span class="header-title">👨‍🏫 Panel Docente</span>
+  </div>
+  <div class="header-right">
+    <span class="header-user" id="headerNombre">Bienvenido</span>
+    <button class="btn-logout" onclick="cerrarSesion()">🚪 Cerrar sesión</button>
+  </div>
+</header>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <button class="sidebar-btn activo" onclick="mostrarSeccion('busqueda', this)">🔍 Buscar Docentes</button>
+    <button class="sidebar-btn" onclick="mostrarSeccion('informe', this)">📋 Informe Alumnos</button>
+    <button class="sidebar-btn" onclick="mostrarSeccion('beneficios', this)">🎁 Beneficios</button>
+  </aside>
+
+  <main class="content">
+
+    <!-- BUSQUEDA -->
+    <section id="busqueda" class="seccion">
+      <div class="card">
+        <h2>🔍 Consulta por Facultad</h2>
+        <div class="form-row">
+          <select id="doFacultadSelect"><option value="">Seleccione Facultad</option></select>
+        </div>
+        <button class="btn-secundario" onclick="buscarDocentesPorFacultad()">Buscar</button>
+        <pre id="resultadoFacultadDocentes" style="margin-top:16px"></pre>
+      </div>
+      <div class="card">
+        <h2>🪪 Consulta por Cédula</h2>
+        <div class="form-row">
+          <input id="doCedulaBuscar" placeholder="Ingrese la cédula">
+        </div>
+        <button class="btn-secundario" onclick="buscarPorCedulaDocenteView()">Buscar</button>
+        <pre id="resultadoCedulaDocente" style="margin-top:16px"></pre>
+      </div>
+    </section>
+
+    <!-- INFORME -->
+    <section id="informe" class="seccion oculto">
+      <div class="card">
+        <h2>📋 Informe de Alumnos</h2>
+        <button class="btn-secundario" onclick="cargarAlumnosTotal()" style="margin-right:8px">Todos los Alumnos</button>
+        <button class="btn-crear" onclick="cargarAlumnosUnico()">Solo Aprobados</button>
+        <br><br>
+        <table id="tablaAlumnosDocente">
+          <thead><tr><th>ID</th><th>Documento</th><th>Nombre</th><th>Facultad</th><th>Aprobado</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section id="beneficios" class="seccion oculto">
+      <div class="card">
+        <h2>🎁 Informe Beneficios Académicos</h2>
+        <button class="btn-secundario" onclick="cargarBeneficios('tablaBeneficiosDocente')">🔄 Actualizar</button>
+        <br><br>
+        <table id="tablaBeneficiosDocente">
+          <thead><tr><th>ID</th><th>Nombre</th><th>Facultad</th><th>Puntaje</th><th>Nivel</th><th>Beneficio</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+function mostrarSeccion(id, btn) {
+  document.querySelectorAll(".seccion").forEach(s => s.classList.add("oculto"));
+  document.getElementById(id).classList.remove("oculto");
+  document.querySelectorAll(".sidebar-btn").forEach(b => b.classList.remove("activo"));
+  if (btn) btn.classList.add("activo");
+}
+
+window.addEventListener('load', function() {
+  const u = JSON.parse(localStorage.getItem('usuario') || 'null');
+  if (u) document.getElementById('headerNombre').textContent = u.nombre || u.username || '';
+});
+</script>
+
+<script src="js/auth.js"></script>
+<script src="js/docentes.js"></script>
+<script src="js/informes.js"></script>
+</body>
+</html>

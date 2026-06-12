@@ -1,0 +1,585 @@
+/* =============================================
+   ESTILOS GLOBALES - Sistema Saber Pro UTS
+   ============================================= */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f0e8;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* =============================================
+   LOGIN
+   ============================================= */
+
+body.login-body {
+  background: #1a5276;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.login-wrapper {
+  display: flex;
+  width: 900px;
+  max-width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  min-height: 580px;
+}
+
+.login-left {
+  flex: 1;
+  background: linear-gradient(160deg, #5d8a3c 0%, #3a6b28 50%, #8b6914 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 30px;
+  color: white;
+  text-align: center;
+}
+
+.login-logo {
+  width: 100px;
+  height: 100px;
+  background: white;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #5d8a3c;
+  padding: 10px;
+}
+
+.login-logo-text {
+  font-size: 28px;
+  font-weight: 900;
+  color: #8b6914;
+  line-height: 1;
+}
+
+.login-logo-sub {
+  font-size: 9px;
+  color: #5d8a3c;
+  line-height: 1.2;
+}
+
+.login-left h2 {
+  font-size: 26px;
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+
+.login-left p {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.login-right {
+  flex: 1.2;
+  background: #fef9f0;
+  padding: 40px 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-right h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #7b2d2d;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.login-right .subtitle {
+  text-align: center;
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #7b2d2d;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  background: white;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: #7b2d2d;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  background: #c0392b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover { background: #a93226; }
+
+.error-msg {
+  color: #c0392b;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 8px;
+  min-height: 18px;
+}
+
+.credenciales-box {
+  margin-top: 20px;
+  border: 1.5px dashed #c8a96e;
+  border-radius: 10px;
+  padding: 14px;
+  background: #fffbf3;
+}
+
+.credenciales-box h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #7b2d2d;
+  margin-bottom: 10px;
+}
+
+.cred-item {
+  background: white;
+  border-left: 3px solid #c0392b;
+  border-radius: 6px;
+  padding: 7px 10px;
+  margin-bottom: 6px;
+}
+
+.cred-item strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #7b2d2d;
+}
+
+.cred-item span {
+  font-size: 11px;
+  color: #666;
+}
+
+/* =============================================
+   HEADER GENERAL
+   ============================================= */
+
+.uts-header {
+  background: #7b2d2d;
+  color: white;
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-logo {
+  width: 36px;
+  height: 36px;
+  background: white;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 900;
+  color: #7b2d2d;
+}
+
+.header-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-user {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.btn-logout {
+  padding: 6px 14px;
+  background: #c0392b;
+  color: white;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-logout:hover { background: #a93226; }
+
+/* =============================================
+   LAYOUT GENERAL
+   ============================================= */
+
+.layout {
+  display: flex;
+  min-height: calc(100vh - 56px);
+}
+
+.sidebar {
+  width: 200px;
+  background: #fff;
+  border-right: 1px solid #e8e0d0;
+  padding: 20px 0;
+  flex-shrink: 0;
+}
+
+.sidebar-btn {
+  display: block;
+  width: 100%;
+  padding: 11px 20px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 13px;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.15s;
+  border-left: 3px solid transparent;
+}
+
+.sidebar-btn:hover, .sidebar-btn.activo {
+  background: #fef5f5;
+  color: #7b2d2d;
+  border-left-color: #c0392b;
+  font-weight: 600;
+}
+
+.content {
+  flex: 1;
+  padding: 28px;
+  overflow-y: auto;
+}
+
+/* =============================================
+   CARDS Y FORMULARIOS
+   ============================================= */
+
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 22px 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+}
+
+.card h2, .card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #7b2d2d;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.form-row input, .form-row select,
+.card input[type=text], .card input[type=email],
+.card input[type=number], .card input[type=password],
+.card select {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid #ddd;
+  border-radius: 7px;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+  background: white;
+}
+
+.card input:focus, .card select:focus { border-color: #7b2d2d; }
+
+.btn-crear {
+  padding: 9px 20px;
+  background: #5a9e3a;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-crear:hover { background: #4a8430; }
+
+.btn-accion {
+  padding: 5px 12px;
+  background: #c0392b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-accion:hover { background: #a93226; }
+
+.btn-secundario {
+  padding: 9px 20px;
+  background: #7b2d2d;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-secundario:hover { background: #6a2626; }
+
+/* =============================================
+   TABLAS
+   ============================================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+thead tr {
+  background: #7b2d2d;
+  color: white;
+}
+
+th {
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #f0e8e0;
+  color: #444;
+}
+
+tbody tr:hover { background: #fef8f5; }
+
+tbody tr:nth-child(even) { background: #fdf7f2; }
+tbody tr:nth-child(even):hover { background: #fef0e8; }
+
+/* =============================================
+   STATS CARDS (Coordinador/Admin)
+   ============================================= */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  border-radius: 10px;
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+.stat-card.rojo { background: #a93226; }
+.stat-card.verde { background: #5a8a38; }
+.stat-card.naranja { background: #d4702a; }
+
+.stat-card .stat-num {
+  font-size: 36px;
+  font-weight: 900;
+  display: block;
+}
+
+.stat-card .stat-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+/* =============================================
+   OPCIONES GRID (Coordinador/Estudiante)
+   ============================================= */
+
+.opciones-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.opcion-card {
+  background: white;
+  border: 1.5px solid #e8e0d0;
+  border-radius: 10px;
+  padding: 22px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.opcion-card:hover {
+  border-color: #c0392b;
+  box-shadow: 0 4px 12px rgba(192,57,43,0.15);
+}
+
+.opcion-card .icono {
+  font-size: 28px;
+  margin-bottom: 8px;
+  color: #7b2d2d;
+}
+
+.opcion-card span {
+  font-size: 12px;
+  color: #555;
+  font-weight: 600;
+}
+
+/* =============================================
+   PERFIL HEADER (Coordinador/Estudiante)
+   ============================================= */
+
+.perfil-header {
+  background: linear-gradient(135deg, #8b2e2e 0%, #a93226 100%);
+  color: white;
+  border-radius: 10px;
+  padding: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.perfil-avatar {
+  width: 60px;
+  height: 60px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 22px;
+}
+
+.perfil-header h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.perfil-header p {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* =============================================
+   PUNTAJE CARD
+   ============================================= */
+
+.puntaje-card {
+  background: linear-gradient(135deg, #5a8a38, #4a7830);
+  color: white;
+  border-radius: 10px;
+  padding: 28px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.puntaje-card .trofeo { font-size: 32px; margin-bottom: 8px; }
+.puntaje-card p { font-size: 13px; opacity: 0.85; margin-bottom: 4px; }
+.puntaje-card .num { font-size: 48px; font-weight: 900; }
+.puntaje-card .nivel {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+/* =============================================
+   OCULTO
+   ============================================= */
+
+.oculto { display: none !important; }
+
+/* =============================================
+   BADGE ESTADO
+   ============================================= */
+
+.badge {
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.badge-activo { background: #d4edda; color: #1a6b35; }
+.badge-inactivo { background: #f8d7da; color: #721c24; }
+
+/* =============================================
+   PRE RESULT OVERRIDE
+   ============================================= */
+pre {
+  white-space: pre-wrap;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  color: #444;
+}

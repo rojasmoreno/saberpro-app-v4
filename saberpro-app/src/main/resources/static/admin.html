@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Administrador - Sistema Saber Pro</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="uts-header">
+  <div class="header-left">
+    <div class="header-logo">uts</div>
+    <span class="header-title">👤 Panel Administrador</span>
+  </div>
+  <div class="header-right">
+    <span class="header-user" id="headerNombre">Bienvenido</span>
+    <button class="btn-logout" onclick="cerrarSesion()">🚪 Cerrar sesión</button>
+  </div>
+</header>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <button class="sidebar-btn activo" onclick="mostrarSeccion('facultades', this)">🏛 Facultades</button>
+    <button class="sidebar-btn" onclick="mostrarSeccion('docentes', this)">👨‍🏫 Docentes</button>
+    <button class="sidebar-btn" onclick="mostrarSeccion('directores', this)">🎓 Directores</button>
+    <button class="sidebar-btn" onclick="mostrarSeccion('dashboard', this)">📊 Dashboard</button>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- FACULTADES -->
+    <section id="facultades" class="seccion">
+      <div class="card">
+        <h2>🏛 Gestión de Facultades</h2>
+        <div class="form-row">
+          <input type="text" id="fNombre" placeholder="Nombre de la facultad">
+        </div>
+        <button class="btn-crear" onclick="crearFacultad()">+ Crear Facultad</button>
+      </div>
+      <div class="card">
+        <h3>Lista de Facultades</h3>
+        <table id="tablaFacultades">
+          <thead><tr><th>ID</th><th>Nombre</th><th>Acción</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="card" id="cardEditarFacultad" style="display:none">
+        <h3>✏️ Editar Facultad</h3>
+        <input type="hidden" id="fIdEditar">
+        <div class="form-row">
+          <input type="text" id="fNombreEditar" placeholder="Nuevo nombre">
+        </div>
+        <button class="btn-secundario" onclick="editarFacultad()">Guardar Cambios</button>
+      </div>
+    </section>
+
+    <!-- DOCENTES -->
+    <section id="docentes" class="seccion oculto">
+      <div class="card">
+        <h2>👨‍🏫 Gestión de Docentes</h2>
+        <div class="form-row">
+          <input type="text" id="dNombre" placeholder="Nombre completo">
+          <input type="text" id="dCedula" placeholder="Cédula">
+          <input type="email" id="dCorreo" placeholder="Correo">
+          <select id="dFacultad"><option value="">Seleccione Facultad</option></select>
+        </div>
+        <button class="btn-crear" onclick="crearDocente()">+ Crear Docente</button>
+      </div>
+      <div class="card">
+        <h3>🔍 Buscar por Cédula</h3>
+        <div class="form-row">
+          <input type="text" id="buscarCedula" placeholder="Ingrese la cédula">
+        </div>
+        <button class="btn-secundario" onclick="buscarDocentePorCedula()">Buscar</button>
+        <pre id="resultadoBusquedaDocente" style="margin-top:12px"></pre>
+      </div>
+      <div class="card">
+        <h3>Lista de Docentes</h3>
+        <table id="tablaDocentes">
+          <thead><tr><th>ID</th><th>Nombre</th><th>Cédula</th><th>Correo</th><th>Facultad</th><th>Acción</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- DIRECTORES -->
+    <section id="directores" class="seccion oculto">
+      <div class="card">
+        <h2>🎓 Gestión de Directores</h2>
+        <div class="form-row">
+          <input type="text" id="drNombre" placeholder="Nombre completo">
+          <input type="text" id="drCedula" placeholder="Cédula">
+          <input type="email" id="drCorreo" placeholder="Correo">
+          <select id="drFacultad"><option value="">Seleccione Facultad</option></select>
+        </div>
+        <button class="btn-crear" onclick="crearDirector()">+ Crear Director</button>
+      </div>
+      <div class="card">
+        <h3>Lista de Directores</h3>
+        <table id="tablaDirectores">
+          <thead><tr><th>ID</th><th>Nombre</th><th>Cédula</th><th>Correo</th><th>Facultad</th><th>Acción</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="seccion oculto">
+      <div class="card">
+        <h2>📊 Dashboard General</h2>
+        <button class="btn-secundario" onclick="cargarDashboard()">🔄 Actualizar Estadísticas</button>
+        <pre id="dashboardResultado" style="margin-top:16px">Sin información.</pre>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+function mostrarSeccion(id, btn) {
+  document.querySelectorAll(".seccion").forEach(s => s.classList.add("oculto"));
+  document.getElementById(id).classList.remove("oculto");
+  document.querySelectorAll(".sidebar-btn").forEach(b => b.classList.remove("activo"));
+  if (btn) btn.classList.add("activo");
+}
+
+window.addEventListener('load', function() {
+  const u = JSON.parse(localStorage.getItem('usuario') || 'null');
+  if (u) document.getElementById('headerNombre').textContent = 'Bienvenido, ' + (u.nombre || u.username || '');
+});
+</script>
+
+<script src="js/auth.js"></script>
+<script src="js/facultades.js"></script>
+<script src="js/docentes.js"></script>
+<script src="js/directores.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
